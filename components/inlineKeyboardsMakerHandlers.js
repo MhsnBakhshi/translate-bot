@@ -1,20 +1,31 @@
-const homeMenu = (bot, data) => {
-  const homeInlineKeyboard = {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "google", callback_data: "/google" }],
-        [{ text: "microsoft", callback_data: "/google" }],
-      ],
-    },
-  };
+const homeMenuKeyboard = {
+  reply_markup: {
+    inline_keyboard: [
+      [{ text: "ترجمه با موتور Google 📲", callback_data: "/google" }],
+      [{ text: "ترجمه با موتور Microsoft 📳", callback_data: "/microsoft" }],
+    ],
+  },
+};
+const googleMenuKeyboard = {
+  reply_markup: {
+    inline_keyboard: [
+      [{ text: "انگلیسی 🏴󠁧󠁢󠁥󠁮󠁧󠁿", callback_data: "en" }],
+      [{ text: "فارسی 🇮🇷", callback_data: "fa" }],
+    ],
+  },
+};
 
-  bot.sendMessage(
-    data.chat.id,
-    `سلام ${data.chat.first_name} به ربات مترجم خوش اومدی!`,
-    homeInlineKeyboard
-  );
+const microsoftMenuKeyboard = {
+  reply_markup: {
+    inline_keyboard: [
+      [{ text: "انگلیسی 🏴󠁧󠁢󠁥󠁮󠁧󠁿", callback_data: "en" }],
+      [{ text: "فارسی 🇮🇷", callback_data: "fa" }],
+    ],
+  },
 };
 
 module.exports = {
-  homeMenu,
+  googleMenuKeyboard,
+  microsoftMenuKeyboard,
+  homeMenuKeyboard,
 };
