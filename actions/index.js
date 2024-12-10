@@ -23,7 +23,7 @@ const setTranslatorAction = async (
   command
 ) => {
   const inline_keyboard = keyboard;
-  await redis.set(`user: ${chatId} ${field}:`, command);
+  await redis.set(`user: ${chatId} ${field}:`, command, "EX", 180);
 
   bot.editMessageText(message, {
     chat_id: chatId,
@@ -32,7 +32,14 @@ const setTranslatorAction = async (
   });
 };
 
+const sendLangAction = async (bot, chatId, lang, message) => {
+  await redis.set(`user: ${chatId} lang:`, lang, "EX", 180);
+
+  bot.sendMessage(chatId, message);
+};
+
 module.exports = {
   homeMenuAction,
   setTranslatorAction,
+  sendLangAction,
 };

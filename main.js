@@ -1,5 +1,9 @@
 const components = require("./components/inlineKeyboardsMakerHandlers");
-const { homeMenuAction, setTranslatorAction } = require("./actions/index");
+const {
+  homeMenuAction,
+  setTranslatorAction,
+  sendLangAction,
+} = require("./actions/index");
 const TelegramBot = require("node-telegram-bot-api");
 const { connectToDB } = require("./configs/db");
 require("dotenv").config();
@@ -11,6 +15,7 @@ bot.onText("/start", (data) => homeMenuAction(bot, data));
 
 bot.on("callback_query", async (query) => {
   const actions = ["/google", "/microsoft"];
+  const langs = ["fa", "en"];
 
   const command = query.data;
   const chatId = query.message.chat.id;
@@ -27,15 +32,22 @@ bot.on("callback_query", async (query) => {
       command
     );
   }
+
+  if (langs.includes(command)) {
+    sendLangAction(
+      bot,
+      chatId,
+      command,
+      "حالا متنی که میخواهی ترجمه بشه رو بفرست.ّ"
+    );
+  }
 });
 
 bot.on("polling_error", (err) =>
   console.log("You Have Polling Error => ", err)
 );
 
-bot.on("error", (err) =>
-  console.log("You Have General Error => ", err)
-);
+bot.on("error", (err) => console.log("You Have General Error => ", err));
 
 connectToDB();
 console.log("Bot Ruunging ...");
