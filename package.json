@@ -1,7 +1,10 @@
 {
-  "name": "start",
+  "name": "Translated Telegram Bot",
+  "developer": "https://t.me/iDvMH",
+  "github": "https://github.com/mhsnbakhshi",
   "version": "1.0.0",
-  "description": "",
+  "description": "unique translate telegram bot with node-telegram-bot-api",
+  "id": "@uniqueTranslatorBot",
   "main": "main.js",
   "scripts": {
     "dev": "nodemon"

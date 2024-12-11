@@ -54,15 +54,12 @@ bot.on("message", async (data) => {
     const action = await redis.get(`user: ${chatId} action:`);
     const lang = await redis.get(`user: ${chatId} lang:`);
 
-    console.log("action =>", action);
-    console.log("lang =>", lang);
-
     if (action && lang) {
       const response = await axios.post(
         `https://api.one-api.ir/translate/v1${action}`,
         {
-          source: lang === "en" ? "en" : "fa",
-          target: lang === "en" ? "fa" : "en",
+          source: lang === "en" ? "fa" : "en",
+          target: lang === "en" ? "en" : "fa",
           text,
         },
         {

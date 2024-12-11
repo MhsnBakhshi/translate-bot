@@ -1,5 +1,4 @@
 const { Redis } = require("ioredis");
-
 const redis = new Redis(process.env.REDIS_URI);
 
 async function connectToDB() {
@@ -9,7 +8,6 @@ async function connectToDB() {
     );
   } catch (error) {
     console.log(error);
-
     redis.disconnect();
     process.exit(1);
   }
@@ -17,6 +15,5 @@ async function connectToDB() {
 
 module.exports = {
   redis,
-  prisma,
   connectToDB,
 };
